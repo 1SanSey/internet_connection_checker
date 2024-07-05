@@ -87,7 +87,7 @@ class InternetConnectionChecker {
     <AddressCheckOptions>[
       AddressCheckOptions(
         address: InternetAddress(
-          'https://dispatching.forkit.ru/',
+          'dispatching.forkit.ru',
           type: InternetAddressType.any,
         ),
       ),
