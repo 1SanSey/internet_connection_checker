@@ -83,45 +83,50 @@ class InternetConnectionChecker {
   /// | 8.8.4.4        | Google     | https://developers.google.com/speed/public-dns/ |
   /// | 208.67.222.222 | OpenDNS    | https://use.opendns.com/                        |
   /// | 208.67.220.220 | OpenDNS    | https://use.opendns.com/                        |
-  static final List<AddressCheckOptions> DEFAULT_ADDRESSES =
-      List<AddressCheckOptions>.unmodifiable(
+  static final List<AddressCheckOptions> DEFAULT_ADDRESSES = List<AddressCheckOptions>.unmodifiable(
     <AddressCheckOptions>[
       AddressCheckOptions(
         address: InternetAddress(
-          '1.1.1.1', // CloudFlare
-          type: InternetAddressType.IPv4,
+          'https://dispatching.forkit.ru/',
+          type: InternetAddressType.any,
         ),
       ),
-      AddressCheckOptions(
-        address: InternetAddress(
-          '2606:4700:4700::1111', // CloudFlare
-          type: InternetAddressType.IPv6,
-        ),
-      ),
-      AddressCheckOptions(
-        address: InternetAddress(
-          '8.8.4.4', // Google
-          type: InternetAddressType.IPv4,
-        ),
-      ),
-      AddressCheckOptions(
-        address: InternetAddress(
-          '2001:4860:4860::8888', // Google
-          type: InternetAddressType.IPv6,
-        ),
-      ),
-      AddressCheckOptions(
-        address: InternetAddress(
-          '208.67.222.222', // OpenDNS
-          type: InternetAddressType.IPv4,
-        ), // OpenDNS
-      ),
-      AddressCheckOptions(
-        address: InternetAddress(
-          '2620:0:ccc::2', // OpenDNS
-          type: InternetAddressType.IPv6,
-        ), // OpenDNS
-      ),
+      // AddressCheckOptions(
+      //   address: InternetAddress(
+      //     '1.1.1.1', // CloudFlare
+      //     type: InternetAddressType.IPv4,
+      //   ),
+      // ),
+      // AddressCheckOptions(
+      //   address: InternetAddress(
+      //     '2606:4700:4700::1111', // CloudFlare
+      //     type: InternetAddressType.IPv6,
+      //   ),
+      // ),
+      // AddressCheckOptions(
+      //   address: InternetAddress(
+      //     '8.8.4.4', // Google
+      //     type: InternetAddressType.IPv4,
+      //   ),
+      // ),
+      // AddressCheckOptions(
+      //   address: InternetAddress(
+      //     '2001:4860:4860::8888', // Google
+      //     type: InternetAddressType.IPv6,
+      //   ),
+      // ),
+      // AddressCheckOptions(
+      //   address: InternetAddress(
+      //     '208.67.222.222', // OpenDNS
+      //     type: InternetAddressType.IPv4,
+      //   ), // OpenDNS
+      // ),
+      // AddressCheckOptions(
+      //   address: InternetAddress(
+      //     '2620:0:ccc::2', // OpenDNS
+      //     type: InternetAddressType.IPv6,
+      //   ), // OpenDNS
+      // ),
     ],
   );
 
@@ -146,8 +151,7 @@ class InternetConnectionChecker {
     _maybeEmitStatusUpdate();
   }
 
-  static final InternetConnectionChecker _instance =
-      InternetConnectionChecker.createInstance();
+  static final InternetConnectionChecker _instance = InternetConnectionChecker.createInstance();
 
   /// Ping a single address. See [AddressCheckOptions] for
   /// info on the accepted argument.
@@ -319,8 +323,7 @@ class InternetConnectionChecker {
   ///
   /// When all the listeners are removed from `onStatusChange`, the internal
   /// timer is cancelled and the stream does not emit events.
-  Stream<InternetConnectionStatus> get onStatusChange =>
-      _statusController.stream;
+  Stream<InternetConnectionStatus> get onStatusChange => _statusController.stream;
 
   /// Returns true if there are any listeners attached to [onStatusChange]
   bool get hasListeners => _statusController.hasListener;
